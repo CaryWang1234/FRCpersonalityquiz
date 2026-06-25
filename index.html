@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Which FRC Season Are You? | Personality Quiz</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="bg-pattern"></div>
+    <div class="container" id="app">
+        <!-- Start Screen -->
+        <div class="screen active" id="start-screen">
+            <div class="logo-area">
+                <div class="frc-badge">
+                    <svg viewBox="0 0 120 120" class="gear-icon">
+                        <circle cx="60" cy="60" r="18" fill="none" stroke="#e31837" stroke-width="5"/>
+                        <circle cx="60" cy="60" r="38" fill="none" stroke="#fff" stroke-width="3" stroke-dasharray="18 6"/>
+                        <circle cx="60" cy="60" r="52" fill="none" stroke="#0066b3" stroke-width="4" stroke-dasharray="8 4"/>
+                        <rect x="55" y="16" width="10" height="22" rx="3" fill="#e31837"/>
+                        <rect x="55" y="82" width="10" height="22" rx="3" fill="#e31837"/>
+                        <rect x="16" y="55" width="22" height="10" rx="3" fill="#0066b3"/>
+                        <rect x="82" y="55" width="22" height="10" rx="3" fill="#0066b3"/>
+                    </svg>
+                </div>
+                <h1 class="title">Which FRC Season <span>Are You?</span></h1>
+                <p class="subtitle">A personality quiz for FIRST Robotics enthusiasts</p>
+                <p class="desc">Discover which FRC season best matches your personality, mindset,<br>and approach to robotics. 20 questions · ~5 minutes</p>
+            </div>
+            <button class="btn-start" id="btn-start">
+                <span>Begin the Quiz</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+            <p class="hint-text">Made by team FRC11019 Xplore · Built with <span class="heart">&#10084;</span> for the FRC community</p>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div class="screen" id="quiz-screen">
+            <div class="quiz-header">
+                <div class="progress-info">
+                    <span class="progress-label">Question</span>
+                    <span class="progress-count" id="progress-text">1 / 20</span>
+                </div>
+                <div class="progress-bar-track">
+                    <div class="progress-bar-fill" id="progress-bar"></div>
+                </div>
+            </div>
+            <div class="question-card" id="question-card">
+                <span class="question-number" id="q-number">Q1</span>
+                <h2 class="question-text" id="q-text"></h2>
+                <div class="options-list" id="options-container"></div>
+            </div>
+            <div class="quiz-nav">
+                <button class="btn-back" id="btn-back" disabled>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    Back
+                </button>
+                <span class="nav-hint" id="nav-hint">Select an option to continue</span>
+            </div>
+        </div>
+
+        <!-- Result Screen -->
+        <div class="screen" id="result-screen">
+            <div class="result-card" id="result-card">
+                <div class="result-year-badge" id="result-year">2024</div>
+                <h2 class="result-name" id="result-name">CRESCENDO</h2>
+                <p class="result-tagline" id="result-tagline"></p>
+                <div class="result-divider"></div>
+                <p class="result-desc" id="result-desc"></p>
+                <div class="result-traits" id="result-traits"></div>
+                <button class="btn-retake" id="btn-retake">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 4v6h6M23 20v-6h-6"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
+                    Take the Quiz Again
+                </button>
+            </div>
+            <p class="result-share-hint">Made by team FRC11019 Xplore · Share your result with your team!</p>
+            <div class="click-zone" id="easter-egg-zone" title="Click me..."></div>
+        </div>
+    </div>
+
+    <!-- Easter Egg Modal -->
+    <div class="easter-egg-overlay" id="easter-egg-overlay">
+        <div class="easter-egg-modal">
+            <span class="ee-close" id="ee-close">&times;</span>
+            <div class="ee-badge">🏆 HIDDEN SEASON 🏆</div>
+            <div class="ee-year">1992</div>
+            <h2 class="ee-name">Maize Craze</h2>
+            <p class="ee-desc">The very first FRC season. Only 28 teams competed in a New Hampshire high school gymnasium. You're a <strong>true pioneer</strong> — someone who values raw ingenuity, the spirit of exploration, and the pure joy of building something from nothing. Long before the big arenas and elaborate games, there was just corn, creativity, and community. You embody the roots of FIRST: <em>gracious professionalism</em> in its most authentic form.</p>
+            <p class="ee-footer">🌟 You discovered the hidden 1992 season! Share this rare result with fellow FRC veterans. 🌟</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -65,12 +65,8 @@ Seasons from 2000 to 2026 are covered. The **1992 Maize Craze** season is only s
 
 ## 🥚 Easter Egg
 
-Two ways to reveal the hidden 1992 season:
-
-- **Result screen**: Click the transparent circular zone in the bottom-right corner 3 times quickly (within 1.5 seconds).
-- **Year badge**: Rapidly click the large year number on the result card 5 times (within 2 seconds).
-
-The easter egg modal shows a special description of the original 1992 FRC season.
+Clicking on something on the mainpage/result page can activate the easter egg.
+The easter egg will give you an extra test of seasons 1992-1999
 
 ---
 

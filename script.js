@@ -374,6 +374,10 @@ const retroResultDesc = document.getElementById('retro-result-desc');
 const retroResultTraits = document.getElementById('retro-result-traits');
 const btnRetroBack = document.getElementById('btn-retro-back');
 
+// Radar Chart DOM Elements
+const radarCanvas = document.getElementById('radar-canvas');
+const retroRadarCanvas = document.getElementById('retro-radar-canvas');
+
 // ---- Screen Management ----
 function showScreen(screen) {
     [startScreen, quizScreen, resultScreen, retroQuizScreen, retroResultScreen].forEach(s => s.classList.remove('active'));
@@ -432,6 +436,148 @@ function goBack() {
 }
 
 // ---- Result Calculation ----
+function drawUserRadarChart(isRetro = false) {
+    const canvas = isRetro ? retroRadarCanvas : radarCanvas;
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext('2d');
+    const width = canvas.width;
+    const height = canvas.height;
+    const centerX = width / 2;
+    const centerY = height / 2;
+    const radius = Math.min(width, height) / 2 - 50;
+    
+    ctx.clearRect(0, 0, width, height);
+    
+    const quizQuestions = isRetro ? retroQuestions : questions;
+    const quizAnswers = isRetro ? retroAnswers : answers;
+    
+    const traitScores = {};
+    
+    quizAnswers.forEach((selectedTrait) => {
+        if (!selectedTrait) return;
+        traitScores[selectedTrait] = (traitScores[selectedTrait] || 0) + 1;
+    });
+    
+    const allTraits = Object.keys(traitScores).sort((a, b) => (traitScores[b] || 0) - (traitScores[a] || 0));
+    const topTraits = allTraits.slice(0, 8);
+    
+    if (topTraits.length < 3) return;
+    
+    const maxScore = Math.max(...Object.values(traitScores));
+    
+    const numTraits = topTraits.length;
+    const angleStep = (Math.PI * 2) / numTraits;
+    const startAngle = -Math.PI / 2;
+    
+    const gridColor = isRetro ? 'rgba(255, 215, 0, 0.15)' : 'rgba(255, 255, 255, 0.1)';
+    const axisColor = isRetro ? 'rgba(255, 215, 0, 0.3)' : 'rgba(255, 255, 255, 0.2)';
+    const labelColor = isRetro ? '#ffd700' : '#e8e8f0';
+    const fillColor = isRetro ? 'rgba(255, 215, 0, 0.25)' : 'rgba(227, 24, 55, 0.25)';
+    const strokeColor = isRetro ? '#ffd700' : '#e31837';
+    
+    for (let level = 1; level <= 5; level++) {
+        const levelRadius = (radius / 5) * level;
+        ctx.beginPath();
+        for (let i = 0; i <= numTraits; i++) {
+            const angle = startAngle + angleStep * i;
+            const x = centerX + Math.cos(angle) * levelRadius;
+            const y = centerY + Math.sin(angle) * levelRadius;
+            if (i === 0) {
+                ctx.moveTo(x, y);
+            } else {
+                ctx.lineTo(x, y);
+            }
+        }
+        ctx.closePath();
+        ctx.strokeStyle = gridColor;
+        ctx.lineWidth = 1;
+        ctx.stroke();
+    }
+    
+    for (let i = 0; i < numTraits; i++) {
+        const angle = startAngle + angleStep * i;
+        const x = centerX + Math.cos(angle) * radius;
+        const y = centerY + Math.sin(angle) * radius;
+        
+        ctx.beginPath();
+        ctx.moveTo(centerX, centerY);
+        ctx.lineTo(x, y);
+        ctx.strokeStyle = axisColor;
+        ctx.lineWidth = 1;
+        ctx.stroke();
+    }
+    
+    ctx.beginPath();
+    const dataPoints = [];
+    for (let i = 0; i <= numTraits; i++) {
+        const traitIndex = i % numTraits;
+        const trait = topTraits[traitIndex];
+        const score = traitScores[trait] || 0;
+        const percentage = maxScore > 0 ? score / maxScore : 0;
+        const dataRadius = radius * Math.min(percentage, 1);
+        const angle = startAngle + angleStep * traitIndex;
+        const x = centerX + Math.cos(angle) * dataRadius;
+        const y = centerY + Math.sin(angle) * dataRadius;
+        dataPoints.push({ x, y });
+        
+        if (i === 0) {
+            ctx.moveTo(x, y);
+        } else {
+            ctx.lineTo(x, y);
+        }
+    }
+    ctx.closePath();
+    ctx.fillStyle = fillColor;
+    ctx.fill();
+    ctx.strokeStyle = strokeColor;
+    ctx.lineWidth = 2;
+    ctx.stroke();
+    
+    dataPoints.forEach((point) => {
+        ctx.beginPath();
+        ctx.arc(point.x, point.y, 4, 0, Math.PI * 2);
+        ctx.fillStyle = strokeColor;
+        ctx.fill();
+        ctx.strokeStyle = isRetro ? '#1a1a0a' : '#0a0a14';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+    });
+    
+    ctx.font = 'bold 10px Inter, sans-serif';
+    ctx.fillStyle = labelColor;
+    
+    for (let i = 0; i < numTraits; i++) {
+        const angle = startAngle + angleStep * i;
+        const labelRadius = radius * 0.85;
+        let x = centerX + Math.cos(angle) * labelRadius;
+        let y = centerY + Math.sin(angle) * labelRadius;
+        
+        if (Math.cos(angle) > 0.3) {
+            ctx.textAlign = 'left';
+            x += 8;
+        } else if (Math.cos(angle) < -0.3) {
+            ctx.textAlign = 'right';
+            x -= 8;
+        } else {
+            ctx.textAlign = 'center';
+        }
+        
+        if (Math.sin(angle) < -0.3) {
+            ctx.textBaseline = 'bottom';
+            y -= 8;
+        } else if (Math.sin(angle) > 0.3) {
+            ctx.textBaseline = 'top';
+            y += 8;
+        } else {
+            ctx.textBaseline = 'middle';
+        }
+        
+        const traitLabel = topTraits[i].replace(/-/g, ' ');
+        ctx.fillText(traitLabel, x, y);
+    }
+}
+
 function calculateResult() {
     const traitCount = {};
     answers.forEach(trait => {
@@ -481,6 +627,8 @@ function showResult() {
         tag.textContent = '#' + t.replace(/-/g, ' ');
         resultTraits.appendChild(tag);
     });
+
+    drawUserRadarChart(false);
 
     resultCard.classList.remove('easter-egg-glow');
     showScreen(resultScreen);
@@ -627,6 +775,8 @@ function showRetroResult() {
         tag.textContent = '#' + t.replace(/-/g, ' ');
         retroResultTraits.appendChild(tag);
     });
+
+    drawUserRadarChart(true);
 
     showScreen(retroResultScreen);
 }

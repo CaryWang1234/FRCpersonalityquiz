@@ -215,7 +215,8 @@ const seasonResults = [
 
 // ---- State ----
 let currentQuestion = 0;
-let answers = []; // stores trait strings for each question
+let answers = [];
+let currentSeason = null;
 
 const app = document.getElementById('app');
 const startScreen = document.getElementById('start-screen');
@@ -240,6 +241,12 @@ const resultCard = document.getElementById('result-card');
 const easterEggOverlay = document.getElementById('easter-egg-overlay');
 const eeClose = document.getElementById('ee-close');
 const easterEggZone = document.getElementById('easter-egg-zone');
+
+const seasonInfoOverlay = document.getElementById('season-info-overlay');
+const siClose = document.getElementById('si-close');
+const siTitle = document.getElementById('si-title');
+const siImage = document.getElementById('si-image');
+const siLink = document.getElementById('si-link');
 
 // ---- Screen Management ----
 function showScreen(screen) {
@@ -266,7 +273,6 @@ function loadQuestion(index) {
         optionsContainer.appendChild(btn);
     });
 
-    // If previously answered, highlight it
     if (answers[index] !== undefined) {
         const selectedIndex = questions[index].options.findIndex(o => o.trait === answers[index]);
         if (selectedIndex >= 0) {
@@ -279,14 +285,11 @@ function loadQuestion(index) {
 }
 
 function selectOption(qIndex, optionIndex, trait) {
-    // Store trait
     answers[qIndex] = trait;
-    // Update UI
     Array.from(optionsContainer.children).forEach((btn, i) => {
         btn.classList.toggle('selected', i === optionIndex);
     });
     navHint.textContent = 'Option selected. Moving to next question...';
-    // Auto-advance after a short delay
     setTimeout(() => {
         if (qIndex + 1 < questions.length) {
             loadQuestion(qIndex + 1);
@@ -304,13 +307,11 @@ function goBack() {
 
 // ---- Result Calculation ----
 function calculateResult() {
-    // Count trait frequencies
     const traitCount = {};
     answers.forEach(trait => {
         traitCount[trait] = (traitCount[trait] || 0) + 1;
     });
 
-    // Score each season based on how many of its traits match the user's top traits
     const userTopTraits = Object.entries(traitCount)
         .sort((a, b) => b[1] - a[1])
         .slice(0, 5)
@@ -337,6 +338,7 @@ function calculateResult() {
 
 function showResult() {
     const season = calculateResult();
+    currentSeason = season;
     resultYear.textContent = season.year;
     resultName.textContent = season.name;
     resultTagline.textContent = season.tagline;
@@ -346,7 +348,6 @@ function showResult() {
     season.traits.forEach(t => {
         const tag = document.createElement('span');
         tag.className = 'trait-tag';
-        // Assign red/blue/white based on trait category (simple random or consistent mapping)
         const firstChar = t.charCodeAt(0) % 3;
         if (firstChar === 0) tag.classList.add('red-tag');
         else if (firstChar === 1) tag.classList.add('blue-tag');
@@ -355,20 +356,52 @@ function showResult() {
         resultTraits.appendChild(tag);
     });
 
-    // Remove any easter egg glow from previous
     resultCard.classList.remove('easter-egg-glow');
     showScreen(resultScreen);
+}
+
+// ---- Season Info Modal Logic (修复图片路径) ----
+function openSeasonInfo() {
+    if (!currentSeason) return;
+    const year = currentSeason.year;
+    siTitle.textContent = `${currentSeason.name} (${year})`;
+    
+    // ✅ 使用相对路径
+    siImage.src = `res/${year}.png`;
+    siImage.alt = `${currentSeason.name} artwork`;
+    
+    // 图片加载失败时的后备显示
+    siImage.onerror = function() {
+        this.style.display = 'none';
+        if (!document.getElementById('si-placeholder')) {
+            const placeholder = document.createElement('div');
+            placeholder.id = 'si-placeholder';
+            placeholder.className = 'si-placeholder';
+            placeholder.textContent = '🎨 Artwork coming soon';
+            this.parentNode.appendChild(placeholder);
+        }
+    };
+    siImage.onload = function() {
+        this.style.display = 'block';
+        const placeholder = document.getElementById('si-placeholder');
+        if (placeholder) placeholder.remove();
+    };
+    
+    siLink.href = `https://frc-events.firstinspires.org/${year}`;
+    seasonInfoOverlay.classList.add('active');
+}
+
+function closeSeasonInfo() {
+    seasonInfoOverlay.classList.remove('active');
 }
 
 // ---- Easter Egg Logic ----
 let clickCount = 0;
 let clickTimer = null;
 
-// Click zone at bottom-right (invisible but clickable)
 easterEggZone.addEventListener('click', () => {
     clickCount++;
     if (clickCount === 3) {
-        // Trigger easter egg
         easterEggOverlay.classList.add('active');
         clickCount = 0;
         if (clickTimer) clearTimeout(clickTimer);
@@ -378,7 +411,6 @@ easterEggZone.addEventListener('click', () => {
     }
 });
 
-// Also allow clicking the result year badge 5 times quickly to trigger
 let yearClickCount = 0;
 let yearClickTimer = null;
 resultYear.addEventListener('click', () => {
@@ -403,10 +435,18 @@ easterEggOverlay.addEventListener('click', (e) => {
     }
 });
 
+siClose.addEventListener('click', closeSeasonInfo);
+seasonInfoOverlay.addEventListener('click', (e) => {
+    if (e.target === seasonInfoOverlay) {
+        closeSeasonInfo();
+    }
+});
+
 // ---- Button Events ----
 document.getElementById('btn-start').addEventListener('click', () => {
     answers = new Array(questions.length).fill(undefined);
     currentQuestion = 0;
+    currentSeason = null;
     loadQuestion(0);
     showScreen(quizScreen);
 });
@@ -416,9 +456,12 @@ btnBack.addEventListener('click', goBack);
 document.getElementById('btn-retake').addEventListener('click', () => {
     answers = new Array(questions.length).fill(undefined);
     currentQuestion = 0;
+    currentSeason = null;
     loadQuestion(0);
     showScreen(quizScreen);
 });
+
+document.getElementById('btn-learn-more').addEventListener('click', openSeasonInfo);
 
 // ---- Initialize ----
 showScreen(startScreen);

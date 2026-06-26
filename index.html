@@ -31,7 +31,7 @@
                 <span>Begin the Quiz</span>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </button>
-            <p class="hint-text">Made by member of team FRC11019 Xplore · Built with <span class="heart">&#10084;</span> for the FRC community</p>
+            <p class="hint-text">Made by team FRC11019 Xplore · Built with <span class="heart">&#10084;</span> for the FRC community</p>
         </div>
 
         <!-- Quiz Screen -->
@@ -68,6 +68,10 @@
                 <div class="result-divider"></div>
                 <p class="result-desc" id="result-desc"></p>
                 <div class="result-traits" id="result-traits"></div>
+                <button class="btn-learn-more" id="btn-learn-more">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                    Learn About This Season
+                </button>
                 <button class="btn-retake" id="btn-retake">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 4v6h6M23 20v-6h-6"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
                     Take the Quiz Again
@@ -87,6 +91,21 @@
             <h2 class="ee-name">Maize Craze</h2>
             <p class="ee-desc">The very first FRC season. Only 28 teams competed in a New Hampshire high school gymnasium. You're a <strong>true pioneer</strong> — someone who values raw ingenuity, the spirit of exploration, and the pure joy of building something from nothing. Long before the big arenas and elaborate games, there was just corn, creativity, and community. You embody the roots of FIRST: <em>gracious professionalism</em> in its most authentic form.</p>
             <p class="ee-footer">🌟 You discovered the hidden 1992 season! Share this rare result with fellow FRC veterans. 🌟</p>
+        </div>
+    </div>
+
+    <!-- Season Info Modal -->
+    <div class="season-info-overlay" id="season-info-overlay">
+        <div class="season-info-modal">
+            <span class="si-close" id="si-close">&times;</span>
+            <h3 class="si-title" id="si-title"></h3>
+            <div class="si-image-container">
+                <img id="si-image" src="" alt="Season artwork" class="si-image" />
+            </div>
+            <a id="si-link" href="#" target="_blank" rel="noopener noreferrer" class="si-link-btn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+                Open Official Season Page
+            </a>
         </div>
     </div>
 

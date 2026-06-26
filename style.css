@@ -116,15 +116,6 @@ body {
     }
 }
 
-@keyframes shimmer {
-    0% {
-        background-position: -200% center;
-    }
-    100% {
-        background-position: 200% center;
-    }
-}
-
 /* ---- START SCREEN ---- */
 #start-screen {
     text-align: center;
@@ -466,12 +457,6 @@ body {
     animation: fadeSlideIn 0.6s ease;
 }
 
-.result-card.easter-egg-glow {
-    border-color: #ffb800 !important;
-    box-shadow: 0 0 50px rgba(255, 184, 0, 0.5), 0 0 100px rgba(255, 150, 0, 0.25) !important;
-    animation: pulseGlow 1.5s ease-in-out infinite;
-}
-
 .result-year-badge {
     display: inline-block;
     font-family: 'Orbitron', monospace;
@@ -559,21 +544,38 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
+/* Learn More & Retake buttons */
+.btn-learn-more,
 .btn-retake {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 14px 32px;
+    padding: 14px 28px;
     font-size: 0.95rem;
     font-weight: 700;
     font-family: 'Inter', sans-serif;
     letter-spacing: 0.03em;
     color: #fff;
-    background: linear-gradient(135deg, var(--blue) 0%, #134b82 100%);
     border: none;
     border-radius: 50px;
     cursor: pointer;
     transition: all var(--transition-smooth);
+    margin: 8px 6px;
+}
+
+.btn-learn-more {
+    background: linear-gradient(135deg, var(--red) 0%, #c41230 100%);
+    box-shadow: 0 6px 24px rgba(227, 24, 55, 0.35);
+}
+
+.btn-learn-more:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 36px rgba(227, 24, 55, 0.5);
+    background: linear-gradient(135deg, #f01e3c 0%, #d41535 100%);
+}
+
+.btn-retake {
+    background: linear-gradient(135deg, var(--blue) 0%, #134b82 100%);
     box-shadow: 0 6px 24px rgba(26, 95, 170, 0.35);
 }
 
@@ -583,6 +585,7 @@ body {
     background: linear-gradient(135deg, #2678cc 0%, #1a5faa 100%);
 }
 
+.btn-learn-more:active,
 .btn-retake:active {
     transform: translateY(0);
 }
@@ -611,7 +614,8 @@ body {
 }
 
 /* ---- EASTER EGG MODAL ---- */
-.easter-egg-overlay {
+.easter-egg-overlay,
+.season-info-overlay {
     display: none;
     position: fixed;
     inset: 0;
@@ -622,7 +626,8 @@ body {
     padding: 20px;
 }
 
-.easter-egg-overlay.active {
+.easter-egg-overlay.active,
+.season-info-overlay.active {
     display: flex;
 }
 
@@ -696,6 +701,87 @@ body {
     font-weight: 600;
 }
 
+/* ---- SEASON INFO MODAL ---- */
+.season-info-modal {
+    background: var(--bg-card);
+    border: 2px solid var(--blue);
+    border-radius: 24px;
+    padding: 28px 24px;
+    max-width: 480px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 0 60px rgba(26, 95, 170, 0.5), 0 0 120px rgba(26, 95, 170, 0.2);
+    animation: fadeSlideIn 0.5s ease;
+    position: relative;
+}
+
+.si-close {
+    position: absolute;
+    top: 12px;
+    right: 18px;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: var(--blue-bright);
+    transition: all var(--transition-fast);
+}
+
+.si-close:hover {
+    color: #fff;
+    transform: scale(1.2);
+}
+
+.si-title {
+    font-family: 'Orbitron', 'Inter', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--white);
+    margin-bottom: 16px;
+}
+
+.si-image-container {
+    margin-bottom: 18px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 2px solid var(--border-subtle);
+    background: #0a0a14;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.si-image {
+    display: block;
+    width: 100%;
+    max-height: 320px;
+    object-fit: contain;
+    background: #0a0a14;
+}
+
+.si-link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.03em;
+    color: #fff;
+    background: linear-gradient(135deg, var(--blue) 0%, #134b82 100%);
+    border: none;
+    border-radius: 50px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all var(--transition-smooth);
+    box-shadow: 0 6px 20px rgba(26, 95, 170, 0.35);
+}
+
+.si-link-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(26, 95, 170, 0.5);
+    background: linear-gradient(135deg, #2678cc 0%, #1a5faa 100%);
+}
+
 /* ---- RESPONSIVE ---- */
 @media (max-width: 480px) {
     .title {
@@ -734,4 +820,52 @@ body {
     .ee-year {
         font-size: 3rem;
     }
+    .btn-learn-more,
+    .btn-retake {
+        padding: 12px 20px;
+        font-size: 0.85rem;
+        margin: 6px 4px;
+    }
+
+}
+
+.si-placeholder {
+    padding: 40px 20px;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    font-weight: 500;
+    background: #dbf9ff;
+    border-radius: 12px;
+    border: 1px dashed var(--border-subtle);
+    }
+.si-image-container {
+    margin-bottom: 18px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 2px solid var(--border-subtle);
+    /* 👇 改为浅色背景 */
+    background: #f4f4f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.si-image {
+    display: block;
+    width: 100%;
+    max-height: 320px;
+    object-fit: contain;
+    /* 👇 图片本身也加个白色底，双保险 */
+    background: #ffffff;
+}
+
+/* 占位提示也同步改为浅色背景 + 深色文字 */
+.si-placeholder {
+    padding: 40px 20px;
+    color: #2d2d3a;            /* 深色文字，适应浅底 */
+    font-size: 1.1rem;
+    font-weight: 500;
+    background: #f4f4f9;      /* 浅色背景 */
+    border-radius: 12px;
+    border: 1px dashed #b0b0c0;
 }

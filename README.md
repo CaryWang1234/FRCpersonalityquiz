@@ -4,8 +4,6 @@ An entertainment-style personality quiz built for the **FIRST Robotics Competiti
 
 **Made by team FRC11019 Xplore** 🧡
 
-![Screenshot](res/screenshot.png) *(optional, add your own screenshot)*
-
 ---
 
 ## ✨ Features

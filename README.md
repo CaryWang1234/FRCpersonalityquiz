@@ -82,8 +82,3 @@ The easter egg modal shows a special description of the original 1992 FRC season
 - Built with ❤️ for the FIRST community.
 - Season artwork sourced from official FIRST resources (used for educational & entertainment purposes).
 
----
-
-## 📄 License
-
-This project is shared under the [MIT License](LICENSE). Feel free to fork, remix, and share with your team!

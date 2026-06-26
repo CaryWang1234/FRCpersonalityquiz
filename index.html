@@ -80,17 +80,51 @@
             <p class="result-share-hint">Made by team FRC11019 Xplore · Share your result with your team!</p>
             <div class="click-zone" id="easter-egg-zone" title="Click me..."></div>
         </div>
-    </div>
 
-    <!-- Easter Egg Modal -->
-    <div class="easter-egg-overlay" id="easter-egg-overlay">
-        <div class="easter-egg-modal">
-            <span class="ee-close" id="ee-close">&times;</span>
-            <div class="ee-badge">🏆 HIDDEN SEASON 🏆</div>
-            <div class="ee-year">1992</div>
-            <h2 class="ee-name">Maize Craze</h2>
-            <p class="ee-desc">The very first FRC season. Only 28 teams competed in a New Hampshire high school gymnasium. You're a <strong>true pioneer</strong> — someone who values raw ingenuity, the spirit of exploration, and the pure joy of building something from nothing. Long before the big arenas and elaborate games, there was just corn, creativity, and community. You embody the roots of FIRST: <em>gracious professionalism</em> in its most authentic form.</p>
-            <p class="ee-footer">🌟 You discovered the hidden 1992 season! Share this rare result with fellow FRC veterans. 🌟</p>
+        <!-- Retro Quiz Screen -->
+        <div class="screen retro-theme" id="retro-quiz-screen">
+            <div class="retro-header">
+                <div class="retro-title">🕹️ THE PIONEER ERA QUIZ 🕹️</div>
+                <div class="retro-subtitle">Discover your 1992-1999 FRC Season</div>
+            </div>
+            <div class="quiz-header">
+                <div class="progress-info">
+                    <span class="progress-label retro-label">Question</span>
+                    <span class="progress-count retro-count" id="retro-progress-text">1 / 10</span>
+                </div>
+                <div class="progress-bar-track retro-track">
+                    <div class="progress-bar-fill retro-fill" id="retro-progress-bar"></div>
+                </div>
+            </div>
+            <div class="question-card retro-card" id="retro-question-card">
+                <span class="question-number retro-q-number" id="retro-q-number">Q1</span>
+                <h2 class="question-text retro-q-text" id="retro-q-text"></h2>
+                <div class="options-list retro-options" id="retro-options-container"></div>
+            </div>
+            <div class="quiz-nav">
+                <button class="btn-back retro-back" id="retro-btn-back" disabled>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    Back
+                </button>
+                <span class="nav-hint retro-hint" id="retro-nav-hint">Select an option to continue</span>
+            </div>
+        </div>
+
+        <!-- Retro Result Screen -->
+        <div class="screen retro-theme" id="retro-result-screen">
+            <div class="retro-result-card" id="retro-result-card">
+                <div class="retro-year-badge" id="retro-result-year">1992</div>
+                <h2 class="retro-result-name" id="retro-result-name">Maize Craze</h2>
+                <p class="retro-result-tagline" id="retro-result-tagline"></p>
+                <div class="retro-divider"></div>
+                <p class="retro-result-desc" id="retro-result-desc"></p>
+                <div class="retro-result-traits" id="retro-result-traits"></div>
+                <button class="btn-retro-back" id="btn-retro-back">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 4v6h6M23 20v-6h-6"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
+                    Back to Main Quiz
+                </button>
+            </div>
+            <p class="retro-share-hint">🕹️ You found the Pioneer Era! Share this with true FRC veterans! 🕹️</p>
         </div>
     </div>
 

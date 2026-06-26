@@ -213,10 +213,121 @@ const seasonResults = [
     { name: "Co-opertition FIRST", year: 2000, tagline: "Pioneer of Teamwork", desc: "You defined the original spirit of 'coopetition.' Collaborative by nature, you believe lifting others lifts yourself.", traits: ["collaborative", "community", "kind", "sharing"] }
 ];
 
+// ---- Retro Season Mapping (1992-1999) ----
+const retroSeasonResults = [
+    { name: "Maize Craze", year: 1992, tagline: "The Pioneer Spirit", desc: "You embody the roots of FIRST. Like the original 28 teams in that New Hampshire gymnasium, you value raw ingenuity, hands-on creativity, and the pure joy of building something from nothing. Corn, creativity, and community — that's your foundation.", traits: ["pioneer", "creative", "hands-on", "community"] },
+    { name: "Rug Rage", year: 1993, tagline: "Raw Competition", desc: "You thrive in the heat of direct competition. Like teams wrestling for control on the mat, you're aggressive, determined, and never back down from a challenge. You believe in taking what you want through sheer force of will.", traits: ["competitive", "aggressive", "determined", "bold"] },
+    { name: "Tower Power", year: 1994, tagline: "Reach New Heights", desc: "You're all about vertical ambition. Like stacking totes to the sky, you believe in building upward — both literally and metaphorically. Height is your playground, and the top is where you belong.", traits: ["ambitious", "strategic", "builder", "visionary"] },
+    { name: "Ramp N' Roll", year: 1995, tagline: "Motion & Momentum", desc: "You understand the art of controlled chaos. Like navigating ramps and obstacles, you're adaptable, quick-thinking, and know how to turn momentum into victory. Movement is your superpower.", traits: ["adaptable", "quick", "dynamic", "resilient"] },
+    { name: "Hexagon Havoc", year: 1996, tagline: "Geometric Genius", desc: "You see patterns where others see chaos. Like navigating hexagonal goals, you think in systems and angles. Strategic positioning and geometric precision are your trademarks.", traits: ["analytical", "strategic", "precise", "methodical"] },
+    { name: "Toroid Terror", year: 1997, tagline: "Circular Mastery", desc: "You embrace complexity and aren't intimidated by unconventional challenges. Like handling toroids, you find beauty in the unusual and excel when others are confused by the shape of the game.", traits: ["innovative", "fearless", "creative", "unconventional"] },
+    { name: "Ladder Logic", year: 1998, tagline: "Step by Step to Victory", desc: "You're a systematic thinker who believes in climbing one rung at a time. Methodical, patient, and logical — you know that every step upward brings you closer to the top.", traits: ["methodical", "patient", "logical", "disciplined"] },
+    { name: "Double Trouble", year: 1999, tagline: "Twice the Challenge, Twice the Fun", desc: "You thrive when juggling multiple objectives. Like managing dual challenges, you're a master of multitasking and believe that complexity only makes victory sweeter.", traits: ["versatile", "multitasker", "energetic", "balanced"] }
+];
+
+// ---- Retro Quiz Questions (10 questions for 1992-1999 era) ----
+const retroQuestions = [
+    {
+        text: "You're in a gymnasium with 27 other teams. What's your first thought?",
+        options: [
+            { letter: "A", text: "This is the beginning of something legendary.", trait: "pioneer" },
+            { letter: "B", text: "I'm going to dominate this competition.", trait: "competitive" },
+            { letter: "C", text: "Let's see what everyone else has built.", trait: "creative" },
+            { letter: "D", text: "How can we all help each other succeed?", trait: "community" }
+        ]
+    },
+    {
+        text: "Your robot is made from scrap parts and duct tape. You feel:",
+        options: [
+            { letter: "A", text: "Proud — it's all about ingenuity.", trait: "hands-on" },
+            { letter: "B", text: "Ready to prove that simple works.", trait: "determined" },
+            { letter: "C", text: "Excited to iterate and improve.", trait: "innovative" },
+            { letter: "D", text: "Grateful for whatever you could scrounge.", trait: "resilient" }
+        ]
+    },
+    {
+        text: "The game involves stacking objects high. Your strategy:",
+        options: [
+            { letter: "A", text: "Build the tallest, most stable tower.", trait: "builder" },
+            { letter: "B", text: "Go fast and stack as many as possible.", trait: "aggressive" },
+            { letter: "C", text: "Find the optimal height-to-speed ratio.", trait: "strategic" },
+            { letter: "D", text: "Watch others and adapt mid-match.", trait: "adaptable" }
+        ]
+    },
+    {
+        text: "You're driving your robot up a ramp. What's your approach?",
+        options: [
+            { letter: "A", text: "Full speed — momentum is everything.", trait: "bold" },
+            { letter: "B", text: "Careful and steady — don't tip over.", trait: "methodical" },
+            { letter: "C", text: "Take the most creative line up.", trait: "creative" },
+            { letter: "D", text: "Practice until it's flawless.", trait: "disciplined" }
+        ]
+    },
+    {
+        text: "The field has hexagonal goals. Your reaction:",
+        options: [
+            { letter: "A", text: "Love the geometric challenge.", trait: "analytical" },
+            { letter: "B", text: "Immediately calculate the best angles.", trait: "precise" },
+            { letter: "C", text: "Figure it out through trial and error.", trait: "dynamic" },
+            { letter: "D", text: "This is weird but I'm here for it.", trait: "unconventional" }
+        ]
+    },
+    {
+        text: "Toroids (donut-shaped objects) are in play. You:",
+        options: [
+            { letter: "A", text: "Design a mechanism specifically for them.", trait: "innovative" },
+            { letter: "B", text: "Embrace the weirdness and have fun.", trait: "fearless" },
+            { letter: "C", text: "Stack them like pancakes.", trait: "hands-on" },
+            { letter: "D", text: "Turn the challenge into an advantage.", trait: "strategic" }
+        ]
+    },
+    {
+        text: "Climbing a ladder is the key objective. You:",
+        options: [
+            { letter: "A", text: "Plan each rung carefully.", trait: "methodical" },
+            { letter: "B", text: "Climb as fast as humanly possible.", trait: "aggressive" },
+            { letter: "C", text: "Make sure the ladder is stable first.", trait: "logical" },
+            { letter: "D", text: "Help your teammate climb too.", trait: "community" }
+        ]
+    },
+    {
+        text: "This year's game has TWO major challenges. You:",
+        options: [
+            { letter: "A", text: "Tackle both simultaneously — why not?", trait: "multitasker" },
+            { letter: "B", text: "Focus on one, then dominate the other.", trait: "disciplined" },
+            { letter: "C", text: "Find the synergy between them.", trait: "analytical" },
+            { letter: "D", text: "Bring double the energy to both.", trait: "energetic" }
+        ]
+    },
+    {
+        text: "What's your philosophy on robot design in the early days?",
+        options: [
+            { letter: "A", text: "Simple, reliable, and gets the job done.", trait: "practical" },
+            { letter: "B", text: "Push boundaries — be the first to try something new.", trait: "pioneer" },
+            { letter: "C", text: "Make it tough enough to survive the chaos.", trait: "resilient" },
+            { letter: "D", text: "Balance offense and defense perfectly.", trait: "balanced" }
+        ]
+    },
+    {
+        text: "Looking back at the 1990s FRC era, what resonates most?",
+        options: [
+            { letter: "A", text: "The raw, unfiltered creativity of it all.", trait: "creative" },
+            { letter: "B", text: "How everyone was figuring it out together.", trait: "community" },
+            { letter: "C", text: "The spirit of fearless experimentation.", trait: "fearless" },
+            { letter: "D", text: "The foundation it laid for everything after.", trait: "visionary" }
+        ]
+    }
+];
+
 // ---- State ----
 let currentQuestion = 0;
 let answers = [];
 let currentSeason = null;
+
+// Retro Quiz State
+let retroCurrentQuestion = 0;
+let retroAnswers = [];
+let retroCurrentSeason = null;
 
 const app = document.getElementById('app');
 const startScreen = document.getElementById('start-screen');
@@ -238,8 +349,6 @@ const resultDesc = document.getElementById('result-desc');
 const resultTraits = document.getElementById('result-traits');
 const resultCard = document.getElementById('result-card');
 
-const easterEggOverlay = document.getElementById('easter-egg-overlay');
-const eeClose = document.getElementById('ee-close');
 const easterEggZone = document.getElementById('easter-egg-zone');
 
 const seasonInfoOverlay = document.getElementById('season-info-overlay');
@@ -248,9 +357,26 @@ const siTitle = document.getElementById('si-title');
 const siImage = document.getElementById('si-image');
 const siLink = document.getElementById('si-link');
 
+// Retro Quiz DOM Elements
+const retroQuizScreen = document.getElementById('retro-quiz-screen');
+const retroResultScreen = document.getElementById('retro-result-screen');
+const retroQText = document.getElementById('retro-q-text');
+const retroQNumber = document.getElementById('retro-q-number');
+const retroOptionsContainer = document.getElementById('retro-options-container');
+const retroProgressText = document.getElementById('retro-progress-text');
+const retroProgressBar = document.getElementById('retro-progress-bar');
+const retroBtnBack = document.getElementById('retro-btn-back');
+const retroNavHint = document.getElementById('retro-nav-hint');
+const retroResultYear = document.getElementById('retro-result-year');
+const retroResultName = document.getElementById('retro-result-name');
+const retroResultTagline = document.getElementById('retro-result-tagline');
+const retroResultDesc = document.getElementById('retro-result-desc');
+const retroResultTraits = document.getElementById('retro-result-traits');
+const btnRetroBack = document.getElementById('btn-retro-back');
+
 // ---- Screen Management ----
 function showScreen(screen) {
-    [startScreen, quizScreen, resultScreen].forEach(s => s.classList.remove('active'));
+    [startScreen, quizScreen, resultScreen, retroQuizScreen, retroResultScreen].forEach(s => s.classList.remove('active'));
     screen.classList.add('active');
 }
 
@@ -395,6 +521,120 @@ function closeSeasonInfo() {
     seasonInfoOverlay.classList.remove('active');
 }
 
+// ---- Retro Quiz Logic ----
+function startRetroQuiz() {
+    retroAnswers = new Array(retroQuestions.length).fill(undefined);
+    retroCurrentQuestion = 0;
+    retroCurrentSeason = null;
+    loadRetroQuestion(0);
+    showScreen(retroQuizScreen);
+}
+
+function loadRetroQuestion(index) {
+    if (index < 0 || index >= retroQuestions.length) return;
+    retroCurrentQuestion = index;
+    const q = retroQuestions[index];
+    retroQText.textContent = q.text;
+    retroQNumber.textContent = `Q${index + 1}`;
+    retroProgressText.textContent = `${index + 1} / ${retroQuestions.length}`;
+    retroProgressBar.style.width = `${((index + 1) / retroQuestions.length) * 100}%`;
+
+    retroOptionsContainer.innerHTML = '';
+    q.options.forEach((opt, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'option-btn';
+        btn.innerHTML = `<span class="option-letter">${opt.letter}</span><span class="option-text">${opt.text}</span>`;
+        btn.addEventListener('click', () => selectRetroOption(index, i, opt.trait));
+        retroOptionsContainer.appendChild(btn);
+    });
+
+    if (retroAnswers[index] !== undefined) {
+        const selectedIndex = retroQuestions[index].options.findIndex(o => o.trait === retroAnswers[index]);
+        if (selectedIndex >= 0) {
+            retroOptionsContainer.children[selectedIndex].classList.add('selected');
+        }
+    }
+
+    retroBtnBack.disabled = (index === 0);
+    retroNavHint.textContent = retroAnswers[index] !== undefined ? 'You can go back or proceed.' : 'Select an option to continue';
+}
+
+function selectRetroOption(qIndex, optionIndex, trait) {
+    retroAnswers[qIndex] = trait;
+    Array.from(retroOptionsContainer.children).forEach((btn, i) => {
+        btn.classList.toggle('selected', i === optionIndex);
+    });
+    retroNavHint.textContent = 'Option selected. Moving to next question...';
+    setTimeout(() => {
+        if (qIndex + 1 < retroQuestions.length) {
+            loadRetroQuestion(qIndex + 1);
+        } else {
+            showRetroResult();
+        }
+    }, 400);
+}
+
+function retroGoBack() {
+    if (retroCurrentQuestion > 0) {
+        loadRetroQuestion(retroCurrentQuestion - 1);
+    }
+}
+
+function calculateRetroResult() {
+    const traitCount = {};
+    retroAnswers.forEach(trait => {
+        traitCount[trait] = (traitCount[trait] || 0) + 1;
+    });
+
+    const userTopTraits = Object.entries(traitCount)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 5)
+        .map(e => e[0]);
+
+    let bestSeason = retroSeasonResults[0];
+    let bestScore = -1;
+
+    retroSeasonResults.forEach(season => {
+        let score = 0;
+        season.traits.forEach(t => {
+            if (userTopTraits.includes(t)) {
+                score += traitCount[t] || 1;
+            }
+        });
+        if (score > bestScore) {
+            bestScore = score;
+            bestSeason = season;
+        }
+    });
+
+    return bestSeason;
+}
+
+function showRetroResult() {
+    const season = calculateRetroResult();
+    retroCurrentSeason = season;
+    retroResultYear.textContent = season.year;
+    retroResultName.textContent = season.name;
+    retroResultTagline.textContent = season.tagline;
+    retroResultDesc.textContent = season.desc;
+
+    retroResultTraits.innerHTML = '';
+    season.traits.forEach((t, index) => {
+        const tag = document.createElement('span');
+        tag.className = 'retro-trait-tag';
+        const colorClasses = ['yellow', 'orange', 'green'];
+        tag.classList.add(colorClasses[index % 3]);
+        tag.textContent = '#' + t.replace(/-/g, ' ');
+        retroResultTraits.appendChild(tag);
+    });
+
+    showScreen(retroResultScreen);
+}
+
+function backToMainQuiz() {
+    showScreen(resultScreen);
+}
+
 // ---- Easter Egg Logic ----
 let clickCount = 0;
 let clickTimer = null;
@@ -402,7 +642,7 @@ let clickTimer = null;
 easterEggZone.addEventListener('click', () => {
     clickCount++;
     if (clickCount === 3) {
-        easterEggOverlay.classList.add('active');
+        startRetroQuiz();
         clickCount = 0;
         if (clickTimer) clearTimeout(clickTimer);
     } else {
@@ -416,22 +656,12 @@ let yearClickTimer = null;
 resultYear.addEventListener('click', () => {
     yearClickCount++;
     if (yearClickCount === 5) {
-        easterEggOverlay.classList.add('active');
+        startRetroQuiz();
         yearClickCount = 0;
         if (yearClickTimer) clearTimeout(yearClickTimer);
     } else {
         if (yearClickTimer) clearTimeout(yearClickTimer);
         yearClickTimer = setTimeout(() => { yearClickCount = 0; }, 2000);
-    }
-});
-
-eeClose.addEventListener('click', () => {
-    easterEggOverlay.classList.remove('active');
-});
-
-easterEggOverlay.addEventListener('click', (e) => {
-    if (e.target === easterEggOverlay) {
-        easterEggOverlay.classList.remove('active');
     }
 });
 
@@ -462,6 +692,10 @@ document.getElementById('btn-retake').addEventListener('click', () => {
 });
 
 document.getElementById('btn-learn-more').addEventListener('click', openSeasonInfo);
+
+// Retro Quiz Events
+retroBtnBack.addEventListener('click', retroGoBack);
+btnRetroBack.addEventListener('click', backToMainQuiz);
 
 // ---- Initialize ----
 showScreen(startScreen);

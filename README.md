@@ -2,7 +2,7 @@
 
 An entertainment-style personality quiz built for the **FIRST Robotics Competition (FRC)** community. Answer 20 questions with robotics-themed scenarios to find out which FRC season (2000–2026) best matches your personality. Includes a hidden 1992 easter egg for true pioneers.
 
-**Made by team FRC11019 Xplore** 🧡
+**Made by member of team FRC11019 Xplore** 🧡
 
 ---
 
@@ -13,8 +13,7 @@ An entertainment-style personality quiz built for the **FIRST Robotics Competiti
 - 📊 **Dynamic result generation** based on trait matching — you get a unique season from 2000 to 2026.
 - 🔗 **Learn More** button opens a modal with official season artwork and a link to the official FRC events page (e.g., `https://frc-events.firstinspires.org/2026`).
 - 🥚 **Easter egg** — Discover the hidden **1992 "Maize Craze"** season (the very first FRC).
-- 📱 Fully responsive and works offline (just a static site).
-- 🇺🇸 All English content, easy to share internationally.
+- 📱 Fully responsive and works both offline (just a static site) and online.
 
 ---
 
@@ -26,7 +25,8 @@ An entertainment-style personality quiz built for the **FIRST Robotics Competiti
 4. View your result and click **“Learn About This Season”** for artwork and the official season page.
 
 > No build tools or installation required. All assets are plain HTML, CSS, and JavaScript.
-Or visit the website https://carywang1234.github.io/FRCpersonalityquiz/
+
+###Or visit the website https://carywang1234.github.io/FRCpersonalityquiz/
 
 ---
 

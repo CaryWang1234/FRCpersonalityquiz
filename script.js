@@ -459,12 +459,19 @@ function drawUserRadarChart(isRetro = false) {
         traitScores[selectedTrait] = (traitScores[selectedTrait] || 0) + 1;
     });
     
+    const traitMaxPossible = {};
+    quizQuestions.forEach((q) => {
+        q.options.forEach(opt => {
+            if (opt.trait) {
+                traitMaxPossible[opt.trait] = (traitMaxPossible[opt.trait] || 0) + 1;
+            }
+        });
+    });
+    
     const allTraits = Object.keys(traitScores).sort((a, b) => (traitScores[b] || 0) - (traitScores[a] || 0));
     const topTraits = allTraits.slice(0, 8);
     
     if (topTraits.length < 3) return;
-    
-    const maxScore = Math.max(...Object.values(traitScores));
     
     const numTraits = topTraits.length;
     const angleStep = (Math.PI * 2) / numTraits;
@@ -514,8 +521,9 @@ function drawUserRadarChart(isRetro = false) {
         const traitIndex = i % numTraits;
         const trait = topTraits[traitIndex];
         const score = traitScores[trait] || 0;
-        const percentage = maxScore > 0 ? score / maxScore : 0;
-        const dataRadius = radius * Math.min(percentage, 1);
+        const maxPossible = traitMaxPossible[trait] || 1;
+        const percentage = maxPossible > 0 ? score / maxPossible : 0;
+        const dataRadius = radius * Math.min(percentage, 0.8);
         const angle = startAngle + angleStep * traitIndex;
         const x = centerX + Math.cos(angle) * dataRadius;
         const y = centerY + Math.sin(angle) * dataRadius;

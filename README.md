@@ -26,7 +26,7 @@ An entertainment-style personality quiz built for the **FIRST Robotics Competiti
 
 > No build tools or installation required. All assets are plain HTML, CSS, and JavaScript.
 
-###Or visit the website https://carywang1234.github.io/FRCpersonalityquiz/
+### Or visit the website https://carywang1234.github.io/FRCpersonalityquiz/
 
 ---
 

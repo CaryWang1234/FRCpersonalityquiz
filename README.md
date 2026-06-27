@@ -1,6 +1,6 @@
 # 🏆 Which FRC Season Are You? — Personality Quiz
 
-An entertainment-style personality quiz built for the **FIRST Robotics Competition (FRC)** community. Answer 20 questions with robotics-themed scenarios to find out which FRC season (2000–2026) best matches your personality. Includes a hidden 1992 easter egg for true pioneers.
+An entertainment-style personality quiz built for the **FIRST Robotics Competition (FRC)** community. Answer 20 questions with robotics-themed scenarios to find out which FRC season (2000–2026,1992-1999) best matches your personality. Includes a hidden 1992 easter egg for true pioneers.
 
 **Made by member of team FRC11019 Xplore** 🧡
 
@@ -59,7 +59,7 @@ Each of the 20 questions has four options, each assigned a **personality trait**
 2. Compares your top traits with each FRC season’s “trait signature”.
 3. Returns the season with the highest similarity score.
 
-Seasons from 2000 to 2026 are covered. The **1992 Maize Craze** season is only shown through an easter egg (click the hidden corner or rapidly click the result year).
+Seasons from 2000 to 2026 are covered. 1992-1999seasons are in the easter egg.
 
 ---
 
